@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <html lang="en">
+    <head>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap"
+        rel="stylesheet"
+      />
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>CheerishCAFE</title>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous"
+      />
+      <style>
+        body {
+          background-image: url("./assets/bg1.png");
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          margin: 0;
+          padding: 0;
+          font-family: Arial, Helvetica, sans-serif;
+          color: rgb(253, 250, 252);
+        }
+
+        .card {
+          background: rgba(235, 165, 176, 0.9);
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+          background-color: rgba(235, 165, 176, 0.9);
+        }
+
+        .custom-btn {
+          color: rgba(235, 165, 176, 0.9) !important;
+        }
+
+        .custom-btn:hover {
+          background-color: rgba(235, 165, 176, 0.9);
+          color: #fff !important;
+        }
+
+        .category-title {
+          text-align: center;
+          color: rgb(253, 250, 252);
+          font-family: "Comic Neue", cursive;
+          font-weight: bold;
+          font-size: 75px;
+        }
+        .title {
+          text-align: center;
+          color: rgba(235, 165, 176, 0.9);
+          font-family: "Comic Neue", cursive;
+          font-weight: bold;
+        }
+
+        .product-title {
+          text-align: center;
+          font-family: "Comic Neue", cursive;
+          font-weight: bold;
+          color: #fff;
+        }
+
+        .product-description {
+          text-align: center;
+          color: #fff;
+        }
+
+        .product-price {
+          text-align: center;
+          color: #fff;
+        }
+
+        table th,
+        table td {
+          text-align: center;
+          vertical-align: middle;
+        }
+
+        .product-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          margin-top: 20px;
+        }
+
+        .product-item {
+          flex-basis: 30%;
+          margin-bottom: 20px;
+          padding: 10px;
+          background-color: rgba(235, 165, 176, 0.9);
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-item img {
+          width: 100%;
+          border-radius: 5px;
+        }
+
+        footer {
+          width: 100%;
+          background-color: rgba(235, 165, 176, 1);
+          text-align: center;
+          padding: 10px 0;
+          color: rgb(253, 250, 252);
+          position: fixed;
+          bottom: 0;
+          left: 0;
+        }
+      </style>
+    </head>
+    <body>
+      <header>
+        <nav
+          class="navbar navbar-expand-md navbar-dark"
+          style="background-color: rgba(235, 165, 176, 0.9)"
+        >
+          <div>
+            <a
+              href="#"
+              class="navbar-brand"
+              style="font-family: 'Comic Neue', cursive; font-weight: bold"
+              >CheerishCAFE</a
+            >
+          </div>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <button
+                class="btn btn-light custom-btn"
+                onclick="window.location.href='login.jsp'"
+              >
+                Login
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <br /><br />
+      <div class="container">
+        <div class="text-center">
+          <h3>Deliver Excellent Customer Service at Your Restaurant</h3>
+          <h4>We offer the following dishes</h4>
+        </div>
+
+        <div class="category-section">
+          <h5 class="category-title">Foods</h5>
+          <div class="product-container">
+            <div
+              class="product-item"
+              th:each="product : ${products}"
+              th:if="${product.category.name} == 'Makanan'"
+            >
+              <img
+                th:src="@{${product.imageUrl}}"
+                alt="Product Image"
+                class="rounded"
+              />
+              <p class="product-title" th:text="${product.name}">
+                Product Name
+              </p>
+              <p class="product-description" th:text="${product.description}">
+                Product Description
+              </p>
+              <p class="product-price" th:text="'Rp.' + ${product.price}">
+                Product Price
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-section">
+          <h5 class="category-title">Drinks</h5>
+          <div class="product-container">
+            <div
+              class="product-item"
+              th:each="product : ${products}"
+              th:if="${product.category.name} == 'Minuman'"
+            >
+              <img
+                th:src="@{${product.imageUrl}}"
+                alt="Product Image"
+                class="rounded"
+              />
+              <p class="product-title" th:text="${product.name}">Drink Name</p>
+              <p class="product-description" th:text="${product.description}">
+                Drink Description
+              </p>
+              <p class="product-price" th:text="'Rp.' + ${product.price}">
+                Drink Price
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-section">
+          <h5 class="category-title">Desserts</h5>
+          <div class="product-container">
+            <div
+              class="product-item"
+              th:each="product : ${products}"
+              th:if="${product.category.name} == 'Dessert'"
+            >
+              <img
+                th:src="@{${product.imageUrl}}"
+                alt="Product Image"
+                class="rounded"
+              />
+              <p class="product-title" th:text="${product.name}">
+                Dessert Name
+              </p>
+              <p class="product-description" th:text="${product.description}">
+                Dessert Description
+              </p>
+              <p class="product-price" th:text="'Rp.' + ${product.price}">
+                Dessert Price
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>Kelompok 2</footer>
+    </body>
+  </html>
+</html>

@@ -1,0 +1,7 @@
+/* src/main/resources/static/css/styles.css */
+body {
+    background-image: url('/uploads/salad.png');
+    background-size: cover;
+    background-position: center;
+    color: rgb(160, 35, 54);
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Item Management Application</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-image: url("/assets/bg1.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: rgb(253, 250, 252);
+      }
+
+      .card {
+        background: rgba(235, 165, 176, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      header {
+        background-color: rgba(235, 165, 176, 0.9);
+      }
+
+      .custom-btn {
+        color: rgba(235, 165, 176, 0.9) !important;
+      }
+
+      .custom-btn:hover {
+        background-color: rgba(235, 165, 176, 0.9);
+        color: #fff !important;
+      }
+
+      table th,
+      table td {
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      .content {
+        padding-bottom: 60px; /* Tambahkan padding di bawah konten agar tidak terlalu mepet dengan footer */
+      }
+
+      footer {
+        background-color: rgba(235, 165, 176, 1);
+        text-align: center;
+        padding: 10px 0;
+        color: rgb(253, 250, 252);
+        margin-top: 20px; /* Tambahkan margin di atas footer */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav
+        class="navbar navbar-expand-md navbar-dark"
+        style="background-color: rgba(235, 165, 176, 0.9)"
+      >
+        <div>
+          <a
+            href="http://www.nacreservices.com"
+            class="navbar-brand"
+            style="font-family: 'Comic Neue', cursive; font-weight: bold"
+            >CheerishCAFE Item Management</a
+          >
+        </div>
+        <ul class="navbar-nav ml-auto">
+          <li><a href="/logout" class="nav-link">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+    <br />
+    <div class="container content">
+      <h3
+        class="text-center"
+        style="
+          color: rgb(253, 250, 252);
+          font-family: 'Comic Neue', cursive;
+          font-weight: bold;
+        "
+      >
+        List of Items
+      </h3>
+      <hr />
+      <div class="text-left">
+        <a th:href="@{/products/buat}" class="btn btn-light custom-btn"
+          >Add New Items</a
+        >
+      </div>
+      <br />
+      <table class="table table-bordered">
+        <thead style="color: rgb(253, 250, 252)">
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody style="color: rgb(253, 250, 252)">
+          <tr th:each="product : ${products}">
+            <td th:text="${product.name}">Product Name</td>
+            <td th:text="${product.price}">Product Price</td>
+            <td th:text="${product.category.name}">Product Category</td>
+            <td>
+              <img
+                th:src="@{${product.imageUrl}}"
+                alt="Product Image"
+                style="max-width: 100px; max-height: 100px"
+              />
+            </td>
+            <td>
+              <a
+                th:href="@{'/products/edit/' + ${product.id}}"
+                class="btn btn-light custom-btn"
+                role="button"
+                >Edit</a
+              >
+              <a
+                th:href="@{'/products/delete/' + ${product.id}}"
+                class="btn btn-light custom-btn"
+                role="button"
+                onclick="return confirm('Are You Sure?')"
+                >Delete</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer>
+      <div class="text-center">
+        <p><strong>by: Kelompok 2</strong></p>
+      </div>
+    </footer>
+  </body>
+</html>

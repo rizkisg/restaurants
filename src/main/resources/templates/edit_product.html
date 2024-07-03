@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Edit Product</title>
+    <style>
+      body {
+        background-image: url("/assets/adminlogin2.webp");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+        color: rgba(247, 234, 236, 0.9);
+        margin-top: 20px;
+      }
+
+      form {
+        width: 400px;
+        margin: 0 auto;
+        background: rgba(235, 165, 176, 0.9);
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(247, 234, 236, 0.9);
+        border-radius: 8px;
+      }
+
+      form div {
+        margin-bottom: 15px;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: rgba(247, 234, 236, 0.9);
+      }
+
+      form input[type="text"],
+      form textarea,
+      form select,
+      form input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid rgba(247, 234, 236, 0.9);
+        border-radius: 4px;
+        color: rgba(235, 165, 176, 0.9);
+      }
+
+      form textarea {
+        resize: vertical;
+      }
+
+      form button {
+        width: 100%;
+        padding: 5px;
+        background: rgba(247, 234, 236, 0.9);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      form button:hover {
+        background: rgba(235, 165, 176, 0.9);
+      }
+
+      form img {
+        display: block;
+        margin-top: 10px;
+        max-width: 100%;
+        border-radius: 4px;
+      }
+
+      .image-container {
+        text-align: center;
+      }
+
+      .image-container img {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Edit Product</h1>
+    <form
+      th:action="@{/products/update/{id}(id=${product.id})}"
+      th:object="${product}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" />
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" th:field="*{description}"></textarea>
+      </div>
+      <div>
+        <label for="price">Price:</label>
+        <input type="text" id="price" th:field="*{price}" />
+      </div>
+      <div>
+        <label for="category">Category:</label>
+        <select id="category" th:field="*{category.id}">
+          <option
+            th:each="category : ${categories}"
+            th:value="${category.id}"
+            th:text="${category.name}"
+          ></option>
+        </select>
+      </div>
+      <div>
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" />
+      </div>
+      <!-- Show current image if exists -->
+      <div class="image-container" th:if="${product.imageUrl}">
+        <label>Current Image:</label>
+        <img
+          th:src="@{${product.imageUrl}}"
+          style="max-width: 200px; max-height: 200px"
+        />
+      </div>
+      <div>
+        <button type="submit">
+          <p style="color: rgba(235, 165, 176, 0.9)">Update</p>
+        </button>
+      </div>
+    </form>
+  </body>
+</html>

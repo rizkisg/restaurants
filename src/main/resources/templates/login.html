@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Login Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-image: url("/assets/adminlogin2.webp");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .card {
+        background: rgba(235, 165, 176, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      header {
+        background-color: rgba(235, 165, 176, 0.9);
+      }
+
+      .custom-btn {
+        color: rgba(235, 165, 176, 0.9) !important;
+      }
+
+      .custom-btn:hover {
+        background-color: rgba(235, 165, 176, 0.9);
+        color: #fff !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark">
+        <div>
+          <a href="#" class="navbar-brand">
+            <p style="font-family: 'Comic Neue', cursive; font-weight: bold">
+              CheerishCAFE
+            </p>
+          </a>
+        </div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              th:href="@{/register}"
+              >Register</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <br /><br />
+    <div class="container col-md-6">
+      <h4
+        style="
+          text-align: center;
+          font-family: 'Comic Neue', cursive;
+          font-weight: bold;
+          color: rgb(253, 250, 252);
+        "
+      >
+        Admin Login
+      </h4>
+      <div class="card">
+        <div class="card-body">
+          <form method="post" role="form" th:action="@{/login}">
+            <fieldset class="form-group">
+              <label style="color: rgb(253, 250, 252)"
+                ><i class="fa fa-user"></i>&nbsp;&nbsp;Email :</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                placeholder="Enter your Email"
+                required="required"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <label style="color: rgb(253, 250, 252)"
+                ><i class="fas fa-unlock-alt"></i>&nbsp;&nbsp;Password :</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="Enter the password"
+                required="required"
+              />
+            </fieldset>
+            <button type="submit" class="btn btn-light custom-btn">
+              Sign In
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer
+      style="
+        position: absolute;
+        bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+      "
+    >
+      <div class="text-center" style="color: rgb(253, 250, 252)">
+        <p><strong>by: Kelompok 2</strong></p>
+      </div>
+    </footer>
+  </body>
+</html>
